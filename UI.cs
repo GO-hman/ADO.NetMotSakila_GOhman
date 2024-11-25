@@ -28,11 +28,11 @@
                 case ConsoleKey.D1:
                     Console.Clear();
 
-                    string name = GetFullName();
+                    string name = GetFullName(); //User enters full name
                     if(ValidateName(name))
                     {
-                        string firstName = GetFirstName(name);
-                        string lastName = GetLastName(name);
+                        string firstName = GetFirstName(name); //Substring of full name, up until first space
+                        string lastName = GetLastName(name); //Substring of full name, after first space
                         Console.Clear();
                         sakilaQuery.FilmsByName(firstName, lastName);
                     }
@@ -51,19 +51,6 @@
                     PressAnyKeyToContinueLogic();
                     break;
             }
-        }
-
-
-        private bool ValidateName(string name) //Check if user entered first AND last name, separated by a space
-        {
-            if (name.IndexOf(" ") == -1)
-            {
-                Console.WriteLine("INVALID NAME\r\n" +
-                    "Enter first AND last name\r\n" +
-                    "(Separated by a space)");
-                return false;
-            }
-            return true;
         }
 
         public string GetFullName()
@@ -87,6 +74,18 @@
             string lastName = fullName.Substring(spaceIndex + 1).Trim();
 
             return lastName.ToUpper().Trim();
+        }
+
+        private bool ValidateName(string name) //Check if user entered first AND last name, separated by a space
+        {
+            if (name.IndexOf(" ") == -1)
+            {
+                Console.WriteLine("INVALID NAME\r\n" +
+                    "Enter first AND last name\r\n" +
+                    "(Separated by a space)");
+                return false;
+            }
+            return true;
         }
 
         private void PressAnyKeyToContinueLogic()
