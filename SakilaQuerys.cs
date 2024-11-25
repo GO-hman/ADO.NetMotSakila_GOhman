@@ -9,7 +9,12 @@ namespace ADO.NetMotSakila_GOhman
         public void FilmsByName(string firstName, string lastName)
         {
             var connection = new SqlConnection(connectionString);
-            string query = $"SELECT film.title FROM film INNER JOIN film_actor ON film.film_id=film_actor.film_id INNER JOIN actor ON film_actor.actor_id=actor.actor_id WHERE first_name LIKE '{firstName}' AND last_name LIKE '{lastName}'";
+
+            string query = $"SELECT film.title " +
+                $"FROM film " +
+                $"INNER JOIN film_actor ON film.film_id=film_actor.film_id " +
+                $"INNER JOIN actor ON film_actor.actor_id=actor.actor_id " +
+                $"WHERE first_name='{firstName}' AND last_name='{lastName}'";
             var command = new SqlCommand(query, connection);
 
             connection.Open();
@@ -25,7 +30,7 @@ namespace ADO.NetMotSakila_GOhman
 
             else
             {
-                Console.WriteLine($"No films with actor {firstName} {lastName}");
+                Console.WriteLine($"No films starring actor {firstName} {lastName}");
             }
             connection.Close();
         }
@@ -33,7 +38,8 @@ namespace ADO.NetMotSakila_GOhman
         public void ListAllActors()
         {
             var connection = new SqlConnection(connectionString);
-            string query = "SELECT first_name, last_name FROM actor";
+            string query = "SELECT first_name, last_name " +
+                "FROM actor";
             var command = new SqlCommand(query, connection);
 
             connection.Open();
