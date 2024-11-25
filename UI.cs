@@ -53,6 +53,7 @@
             }
         }
 
+
         public string GetFullName()
         {
             Console.WriteLine("Enter name of actor (first and last name): ");
